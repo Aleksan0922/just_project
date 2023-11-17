@@ -2,13 +2,13 @@ import sys
 from random import randint
 from PyQt5.QtWidgets import QMainWindow, QApplication
 from PyQt5.QtGui import QPainter, QColor
-from PyQt5 import uic
+from UI import Ui_MainWindow
 
 
-class Arifmometr(QMainWindow):
+class Arifmometr(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.setupUi(self)
         self.flag = False
         self.pushButton.clicked.connect(self.pushed)
 
@@ -20,10 +20,17 @@ class Arifmometr(QMainWindow):
 
     def draw_el(self, qp):
         if self.flag:
-            rad = randint(1, 40)
-            qp.setBrush(QColor(255, 255, 0))
+            rad = randint(10, 50)
+            r = randint(0, 255)
+            g = randint(0, 255)
+            b = randint(0, 255)
+            qp.setBrush(QColor(r, g, b))
             qp.drawEllipse(30, 30, rad * 2, rad * 2)
-            rad = randint(1, 40)
+            rad = randint(10, 50)
+            r = randint(0, 255)
+            g = randint(0, 255)
+            b = randint(0, 255)
+            qp.setBrush(QColor(r, g, b))
             qp.drawEllipse(140, 30, rad * 2, rad * 2)
 
     def pushed(self):
